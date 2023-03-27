@@ -46,5 +46,5 @@ for dataset in datasets:
             # in case another machine created the path meanwhile !:(
             pass
 
-    pool = Pool(processes=64) # Create a pool of 4 worker processes
-    results = pool.map(PF_module.PF(results_path, Dataset_name, dataset, Labels, nb_folds=5, n_estimators= 100, n_stump_evaluations=5), dataset) # Execute the function in parallel on the data
+    pool = Pool(processes=20) # Create a pool of 4 worker processes
+    results = pool.map(PF_module.PF(results_path, Dataset_name, Dataset, Labels, nb_folds=5, n_estimators= 100, n_stump_evaluations=5), dataset) # Execute the function in parallel on the data
