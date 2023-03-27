@@ -23,7 +23,7 @@ def PF(results_path, dataset_name, dataset, labels, nb_folds=5, n_estimators= 10
 
     ## Create Classification module
     from sktime.classification.distance_based import ProximityForest
-    classifier = ProximityForest(n_estimators = n_estimators, n_stump_evaluations= n_stump_evaluations , n_jobs = -1)
+    classifier = ProximityForest(n_estimators = n_estimators, n_stump_evaluations= n_stump_evaluations , n_jobs = 64)
 
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
