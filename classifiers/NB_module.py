@@ -1,6 +1,6 @@
 
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
-from sklearn.model_selection import cross_val_predict, KFold
+from sklearn.model_selection import KFold
 import time
 import numpy as np
 
@@ -23,10 +23,6 @@ def NB(results_path, dataset_name, dataset, labels, nb_folds=5 ):
     ## Create Classification module
     from sklearn.naive_bayes import GaussianNB
     classifier = GaussianNB()
-
-    y_pred = cross_val_predict(classifier, dataset_1,labels,cv=5, n_jobs=-1)
-    print(y_pred)
-
 
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
@@ -54,7 +50,7 @@ def NB(results_path, dataset_name, dataset, labels, nb_folds=5 ):
         print(f1)
 
         confusion = confusion_matrix(y_test, y_pred)
-        print(confusion)
+        #print(confusion)
 
         accuracy_scores.append(accuracy)
         f1_scores.append(f1)
