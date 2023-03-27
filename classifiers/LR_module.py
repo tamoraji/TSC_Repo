@@ -21,7 +21,7 @@ def LR(results_path, dataset_name, dataset, labels, nb_folds=5,  C=10):
 
     ## Create Classification module
     from sklearn.linear_model import LogisticRegression
-    classifier = LogisticRegression(C=C, max_iter=1000, n_jobs= -1)
+    classifier = LogisticRegression(C=C, max_iter=1000, n_jobs=100)
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
     accuracy_scores = []

@@ -22,7 +22,7 @@ def RF(results_path, dataset_name, dataset, labels, nb_folds=5, n_trees=500 ):
 
     ## Create Classification module
     from sklearn.ensemble import RandomForestClassifier
-    classifier = RandomForestClassifier(n_estimators=n_trees, n_jobs=-1)
+    classifier = RandomForestClassifier(n_estimators=n_trees, n_jobs=100)
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
     accuracy_scores = []
