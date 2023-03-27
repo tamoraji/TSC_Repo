@@ -24,6 +24,11 @@ def NB(results_path, dataset_name, dataset, labels, nb_folds=5 ):
     from sklearn.naive_bayes import GaussianNB
     classifier = GaussianNB()
 
+    y_pred = cross_val_predict(classifier, dataset_1,labels,cv=5, n_jobs=-1)
+    print(y_pred)
+
+
+
     kf = KFold(n_splits=nb_folds, shuffle=True)
     accuracy_scores = []
     f1_scores = []
