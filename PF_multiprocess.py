@@ -1,3 +1,6 @@
+from joblib import parallel_backend
+
+from joblib import Parallel, delayed
 from multiprocessing import Pool
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
 from sklearn.model_selection import KFold
@@ -45,6 +48,9 @@ for dataset in datasets:
         except:
             # in case another machine created the path meanwhile !:(
             pass
+    
 
-    pool = Pool(processes=20) # Create a pool of 4 worker processes
-    results = pool.map(PF_module.PF(results_path, Dataset_name, Dataset, Labels, nb_folds=5, n_estimators= 100, n_stump_evaluations=5), dataset) # Execute the function in parallel on the data
+    results = Parallel(n_jobs=20)(delayed(PF_module.PF(results_path, Dataset_name, Dataset, Labels, nb_folds=5, n_estimators= 100, n_stump_evaluations=5))(x) for X in dataset) # Run the function in parallel on the data using 4 worker processes
+    #pool = Pool(processes=20) # Create a pool of 4 worker processes
+    
+    #results = pool.map(PF_module.PF(results_path, Dataset_name, Dataset, Labels, nb_folds=5, n_estimators= 100, n_stump_evaluations=5), dataset) # Execute the function in parallel on the data
