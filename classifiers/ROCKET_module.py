@@ -95,7 +95,7 @@ class ROCKETClassifier(BaseClassifier):
                 random_state=self.random_state,
                 n_jobs=self.n_jobs,
             ),
-            RidgeClassifierCV(alphas=np.logspace(-3, 3, 10), normalize=True), verbose=True
+            RidgeClassifierCV(alphas=np.logspace(-3, 3, 10)), verbose=True
         )
         rocket_pipeline.fit(X, y)
 
