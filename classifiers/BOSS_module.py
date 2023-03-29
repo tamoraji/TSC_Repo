@@ -6,7 +6,7 @@ import sktime
 
 
 
-def BOSS(results_path, dataset_name, dataset, labels, nb_folds=5, max_ensemble_size=500,
+def BOSS(results_path, dataset_name, dataset, labels, nb_folds=5, max_ensemble_size=500, max_win_len_prop = 1,
           min_window = 10,alphabet_size=4 , feature_selection = "chi2" ):
 
     t_total = time.time() ##Start timing
@@ -15,17 +15,19 @@ def BOSS(results_path, dataset_name, dataset, labels, nb_folds=5, max_ensemble_s
     print(f"\n The number of data samples (N) is:{dataset.shape[0]}")
     print(f"\n The number of TS length (T) is:{dataset.shape[1]}")
     print(f"\n The number of TS dimention (M) is:{dataset.shape[2]}")
+    if dataset.shape[2] > 1:
+        print("BOSS is not capable of doing classification on MTS. so it will be done on only the first dimension")
 
-    #input shape = [n_instances, n_dimensions, series_length]
-    ##Swzp axis
-    Dataset = np.swapaxes(dataset, 1,2)
+    #input shape = [n_instances, series_length]
+    ##Remove the last axis
+    Dataset = dataset[:,:,0]
 
     ## Input "n" series with "d" dimensions of length "m" . default config  based on [4] is : 
     """
     max_ensemble_size : int or None, default=500
         Maximum number of classifiers to retain.
 
-    max_win_len_prop : int or float, default=min(200,sqrt(N)) 
+    max_win_len_prop : int or float, default=1) 
         Maximum window length as a proportion of the series length.
     
     min_window : int, default=10
@@ -37,8 +39,6 @@ def BOSS(results_path, dataset_name, dataset, labels, nb_folds=5, max_ensemble_s
     feature_selection: {"chi2", "none", "random"}, default: "chi2"
     """
 
-    ## Implement the CanonicalIntervalForest classifier
-    max_win_len_prop = min(200,np.sqrt(dataset.shape[0]))
 
 
     ## Create Classification module
