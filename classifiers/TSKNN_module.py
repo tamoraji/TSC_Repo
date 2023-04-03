@@ -64,16 +64,17 @@ def KNN(results_path, dataset_name, dataset, labels, nb_folds=5, dis='euclidean'
         print(f" fold {fold+1} is Finished!")
         
         # save the output to a text file
-        with open(f'{results_path}/dataset_{dataset_name}_RF_fold_{fold+1}.txt', 'w') as f:
+        with open(f'{results_path}/dataset_{dataset_name}_KNN_{dis}_fold_{fold+1}.txt', 'w') as f:
             f.write(f'Accuracy: {accuracy}\n')
             f.write(f'F1 Score: {f1}\n')
             f.write(f'Confusion Matrix:\n{confusion}\n\n')
             f.write(f'Classification report:\n{report}\n\n')
         
-    with open(f'{results_path}/dataset_{dataset_name}_RF.txt', 'w') as f:
+    with open(f'{results_path}/dataset_{dataset_name}_KNN_{dis}.txt', 'w') as f:
         f.write("Mean accuracy: {:.3f} (std={:.3f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))
         f.write("Mean F1 score: {:.3f} (std={:.3f})\n".format(np.mean(f1_scores), np.std(f1_scores)))
         f.write("Mean confusion matrix:\n{}\n".format(np.array2string(np.mean(confusion_matrices, axis=0))))
+        f.write("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
     print(" Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
