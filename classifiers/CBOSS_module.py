@@ -7,7 +7,7 @@ import sktime
 
 
 def CBOSS(results_path, dataset_name, dataset, labels, nb_folds=5, n_parameter_samples= 250, 
-          max_ensemble_size=50, max_win_len_prop = 0.7, n_jobs = 10):
+          max_ensemble_size=50, max_win_len_prop = 0.7,feature_selection="chi2", n_jobs = 10):
 
     t_total = time.time() ##Start timing
 
@@ -61,7 +61,7 @@ def CBOSS(results_path, dataset_name, dataset, labels, nb_folds=5, n_parameter_s
     ## Create Classification module
     from sktime.classification.dictionary_based import ContractableBOSS
     classifier = ContractableBOSS(n_parameter_samples= n_parameter_samples , max_ensemble_size = max_ensemble_size , 
-                                  max_win_len_prop = max_win_len_prop , n_jobs= n_jobs)
+                                  max_win_len_prop = max_win_len_prop ,feature_selection=feature_selection, n_jobs= n_jobs)
 
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
