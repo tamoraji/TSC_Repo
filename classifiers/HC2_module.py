@@ -6,8 +6,8 @@ import sktime
 
 
 
-def CBOSS(results_path, dataset_name, dataset, labels, nb_folds=5, n_parameter_samples= 250, 
-          max_ensemble_size=50, max_win_len_prop = 0.7, n_jobs = 10):
+def HC2(results_path, dataset_name, dataset, labels, nb_folds=5,
+        n_jobs = 10):
 
     t_total = time.time() ##Start timing
 
@@ -15,53 +15,53 @@ def CBOSS(results_path, dataset_name, dataset, labels, nb_folds=5, n_parameter_s
     print(f"\n The number of data samples (N) is:{dataset.shape[0]}")
     print(f"\n The number of TS length (T) is:{dataset.shape[1]}")
     print(f"\n The number of TS dimention (M) is:{dataset.shape[2]}")
-    if dataset.shape[2] > 1:
-        print("CBOSS is not capable of doing classification on MTS. so it will be done on only the first dimension")
+    #if dataset.shape[2] > 1:
+        #print("CBOSS is not capable of doing classification on MTS. so it will be done on only the first dimension")
 
     #input shape = [n_instances, series_length]
     ##Remove the last axis
-    Dataset = dataset[:,:,0]
+    #Dataset = dataset[:,:,0]
+
+    #input shape = [n_instances, n_dimensions, series_length]
+    ##Swzp axis
+    Dataset = np.swapaxes(dataset, 1,2)
 
 
     ## Input "n" series with "d" dimensions of length "m" . default config  based on [73] is : 
     """
     Parameters
     ----------
-    n_parameter_samples : int, default = 250
-        If search is randomised, number of parameter combos to try.
-    max_ensemble_size : int or None, default = 50
-        Maximum number of classifiers to retain. Will limit number of retained
-        classifiers even if more than `max_ensemble_size` are within threshold.
-    max_win_len_prop : int or float, default = 0.7
-        Maximum window length as a proportion of the series length.
-    min_window : int, default = 10
-        Minimum window size.
-    time_limit_in_minutes : int, default = 0
-        Time contract to limit build time in minutes. Default of 0 means no limit.
-    contract_max_n_parameter_samples : int, default=np.inf
-        Max number of parameter combinations to consider when time_limit_in_minutes is
-        set.
-    save_train_predictions : bool, default=False
-        Save the ensemble member train predictions in fit for use in _get_train_probs
-        leave-one-out cross-validation.
-    n_jobs : int, default = 1
+    stc_params : dict or None, default=None
+        Parameters for the ShapeletTransformClassifier module. If None, uses the
+        default parameters with a 2 hour transform contract.
+    drcif_params : dict or None, default=None
+        Parameters for the DrCIF module. If None, uses the default parameters with
+        n_estimators set to 500.
+    arsenal_params : dict or None, default=None
+        Parameters for the Arsenal module. If None, uses the default parameters.
+    tde_params : dict or None, default=None
+        Parameters for the TemporalDictionaryEnsemble module. If None, uses the default
+        parameters.
+    time_limit_in_minutes : int, default=0
+        Time contract to limit build time in minutes, overriding
+        n_estimators/n_parameter_samples for each component.
+        Default of 0 means n_estimators/n_parameter_samples for each component is used.
+    save_component_probas : bool, default=False
+        When predict/predict_proba is called, save each HIVE-COTEV2 component
+        probability predictions in component_probas.
+    verbose : int, default=0
+        Level of output printed to the console (for information only).
+    n_jobs : int, default=1
         The number of jobs to run in parallel for both `fit` and `predict`.
         ``-1`` means using all processors.
-    feature_selection: {"chi2", "none", "random"}, default: none
-        Sets the feature selections strategy to be used. Chi2 reduces the number
-        of words significantly and is thus much faster (preferred). Random also reduces
-        the number significantly. None applies not feature selectiona and yields large
-        bag of words, e.g. much memory may be needed.
     random_state : int or None, default=None
-        Seed for random integer.
+        Seed for random number generation.
     """
 
 
-
     ## Create Classification module
-    from sktime.classification.dictionary_based import ContractableBOSS
-    classifier = ContractableBOSS(n_parameter_samples= n_parameter_samples , max_ensemble_size = max_ensemble_size , 
-                                  max_win_len_prop = max_win_len_prop , n_jobs= n_jobs)
+    from sktime.classification.hybrid import HIVECOTEV2
+    classifier = HIVECOTEV2(n_jobs= n_jobs)
 
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
@@ -103,13 +103,13 @@ def CBOSS(results_path, dataset_name, dataset, labels, nb_folds=5, n_parameter_s
         print(f" fold {fold+1} is Finished!")
         
         # save the output to a text file
-        with open(f'{results_path}/dataset_{dataset_name}_CBOSS_fold_{fold+1}.txt', 'w') as f:
+        with open(f'{results_path}/dataset_{dataset_name}_HC2_fold_{fold+1}.txt', 'w') as f:
             f.write(f'Accuracy: {accuracy}\n')
             f.write(f'F1 Score: {f1}\n')
             f.write(f'Confusion Matrix:\n{confusion}\n\n')
             f.write(f'Classification report:\n{report}\n\n')
         
-    with open(f'{results_path}/dataset_{dataset_name}_CBOSS.txt', 'w') as f:
+    with open(f'{results_path}/dataset_{dataset_name}_HC2.txt', 'w') as f:
         f.write("Mean accuracy: {:.4f} (std={:.4f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))
         f.write("Mean F1 score: {:.4f} (std={:.4f})\n".format(np.mean(f1_scores), np.std(f1_scores)))
         f.write("Mean confusion matrix:\n{}\n".format(np.array2string(np.mean(confusion_matrices, axis=0))))

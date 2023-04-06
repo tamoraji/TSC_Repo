@@ -24,10 +24,11 @@ for dataset in datasets:
 # change this directory for your machine
 root_dir = './'
 
+
 # define a list of algorithms
 algorirhms_path = "./classifiers"
 
-from classifiers import CBOSS_module
+from classifiers import HC2_module
 
 
 # define the number of folds
@@ -55,8 +56,10 @@ for dataset in datasets:
 
 
 
-    #Run The CBOSS Module
-    CBOSS_module.CBOSS(results_path, Dataset_name, Dataset, Labels, nb_folds=n_folds, n_parameter_samples= 250, 
-                       max_ensemble_size=50, max_win_len_prop = 0.7)
+    #Run The HC2 Module
+    HC2_module.HC2(results_path, Dataset_name, Dataset, Labels, nb_folds=n_folds,
+                n_jobs=10)
 
+
+    
 
