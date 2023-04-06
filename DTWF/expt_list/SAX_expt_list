@@ -1,0 +1,304 @@
+<experiments>
+
+<classifiers>
+
+<classifier>
+<type> SAX </type>
+<outdir> out/SAX_choose </outdir>
+<n> 8 16 24 32 40 48 56 64 72 80 96 112 128 144 160 </n>
+<w> 4 8 </w>
+<a> 3 4 5 6 7 8 9 </a>
+</classifier>
+
+</classifiers>
+
+
+<datasets>
+
+<dataset>
+<name> 50words </name>
+<test> /data02/code/katerj/timeseries/dataset/50words/50words_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/50words/50words_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Adiac </name>
+<test> /data02/code/katerj/timeseries/dataset/Adiac/Adiac_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Adiac/Adiac_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Beef </name>
+<test> /data02/code/katerj/timeseries/dataset/Beef/Beef_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Beef/Beef_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Car </name>
+<test> /data02/code/katerj/timeseries/dataset/Car/Car_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Car/Car_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> CBF </name>
+<test> /data02/code/katerj/timeseries/dataset/CBF/CBF_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/CBF/CBF_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> ChlorineConcentration </name>
+<test> /data02/code/katerj/timeseries/dataset/ChlorineConcentration/ChlorineConcentration_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/ChlorineConcentration/ChlorineConcentration_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> CinC_ECG_torso </name>
+<test> /data02/code/katerj/timeseries/dataset/CinC_ECG_torso/CinC_ECG_torso_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/CinC_ECG_torso/CinC_ECG_torso_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Coffee </name>
+<test> /data02/code/katerj/timeseries/dataset/Coffee/Coffee_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Coffee/Coffee_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Cricket_X </name>
+<test> /data02/code/katerj/timeseries/dataset/Cricket_X/Cricket_X_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Cricket_X/Cricket_X_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Cricket_Y </name>
+<test> /data02/code/katerj/timeseries/dataset/Cricket_Y/Cricket_Y_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Cricket_Y/Cricket_Y_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Cricket_Z </name>
+<test> /data02/code/katerj/timeseries/dataset/Cricket_Z/Cricket_Z_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Cricket_Z/Cricket_Z_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> DiatomSizeReduction </name>
+<test> /data02/code/katerj/timeseries/dataset/DiatomSizeReduction/DiatomSizeReduction_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/DiatomSizeReduction/DiatomSizeReduction_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> ECG200 </name>
+<test> /data02/code/katerj/timeseries/dataset/ECG200/ECG200_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/ECG200/ECG200_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> ECGFiveDays </name>
+<test> /data02/code/katerj/timeseries/dataset/ECGFiveDays/ECGFiveDays_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/ECGFiveDays/ECGFiveDays_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> FaceAll </name>
+<test> /data02/code/katerj/timeseries/dataset/FaceAll/FaceAll_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/FaceAll/FaceAll_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> FaceFour </name>
+<test> /data02/code/katerj/timeseries/dataset/FaceFour/FaceFour_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/FaceFour/FaceFour_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> FacesUCR </name>
+<test> /data02/code/katerj/timeseries/dataset/FacesUCR/FacesUCR_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/FacesUCR/FacesUCR_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> fish </name>
+<test> /data02/code/katerj/timeseries/dataset/fish/FISH_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/fish/FISH_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Gun_Point </name>
+<test> /data02/code/katerj/timeseries/dataset/Gun_Point/Gun_Point_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Gun_Point/Gun_Point_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Haptics </name>
+<test> /data02/code/katerj/timeseries/dataset/Haptics/Haptics_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Haptics/Haptics_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> InlineSkate </name>
+<test> /data02/code/katerj/timeseries/dataset/InlineSkate/InlineSkate_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/InlineSkate/InlineSkate_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> ItalyPowerDemand </name>
+<test> /data02/code/katerj/timeseries/dataset/ItalyPowerDemand/ItalyPowerDemand_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/ItalyPowerDemand/ItalyPowerDemand_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Lighting2 </name>
+<test> /data02/code/katerj/timeseries/dataset/Lighting2/Lighting2_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Lighting2/Lighting2_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Lighting7 </name>
+<test> /data02/code/katerj/timeseries/dataset/Lighting7/Lighting7_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Lighting7/Lighting7_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> MALLAT </name>
+<test> /data02/code/katerj/timeseries/dataset/MALLAT/MALLAT_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/MALLAT/MALLAT_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> MedicalImages </name>
+<test> /data02/code/katerj/timeseries/dataset/MedicalImages/MedicalImages_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/MedicalImages/MedicalImages_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> MoteStrain </name>
+<test> /data02/code/katerj/timeseries/dataset/MoteStrain/MoteStrain_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/MoteStrain/MoteStrain_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> NonInvasiveFatalECG_Thorax1 </name>
+<test> /data02/code/katerj/timeseries/dataset/NonInvasiveFatalECG_Thorax1/NonInvasiveFatalECG_Thorax1TEST.txt </test>
+<train> /data02/code/katerj/timeseries/dataset/NonInvasiveFatalECG_Thorax1/NonInvasiveFatalECG_Thorax1TRAIN.txt </train>
+</dataset>
+
+<dataset>
+<name> NonInvasiveFatalECG_Thorax2 </name>
+<test> /data02/code/katerj/timeseries/dataset/NonInvasiveFatalECG_Thorax2/NonInvasiveFatalECG_Thorax2TEST.txt </test>
+<train> /data02/code/katerj/timeseries/dataset/NonInvasiveFatalECG_Thorax2/NonInvasiveFatalECG_Thorax2TRAIN.txt </train>
+</dataset>
+
+<dataset>
+<name> OliveOil </name>
+<test> /data02/code/katerj/timeseries/dataset/OliveOil/OliveOil_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/OliveOil/OliveOil_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> OSULeaf </name>
+<test> /data02/code/katerj/timeseries/dataset/OSULeaf/OSULeaf_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/OSULeaf/OSULeaf_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> plane </name>
+<test> /data02/code/katerj/timeseries/dataset/plane/Plane_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/plane/Plane_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> SonyAIBORobot_Surface </name>
+<test> /data02/code/katerj/timeseries/dataset/SonyAIBORobotSurface/SonyAIBORobotSurface_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/SonyAIBORobotSurface/SonyAIBORobotSurface_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> SonyAIBORobot_SurfaceII </name>
+<test> /data02/code/katerj/timeseries/dataset/SonyAIBORobotSurfaceII/SonyAIBORobotSurfaceII_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/SonyAIBORobotSurfaceII/SonyAIBORobotSurfaceII_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> StarLightCurves </name>
+<test> /data02/code/katerj/timeseries/dataset/StarLightCurves/StarLightCurves_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/StarLightCurves/StarLightCurves_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> SwedishLeaf </name>
+<test> /data02/code/katerj/timeseries/dataset/SwedishLeaf/SwedishLeaf_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/SwedishLeaf/SwedishLeaf_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Symbols </name>
+<test> /data02/code/katerj/timeseries/dataset/Symbols/Symbols_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Symbols/Symbols_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> synthetic_control </name>
+<test> /data02/code/katerj/timeseries/dataset/synthetic_control/synthetic_control_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/synthetic_control/synthetic_control_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Trace </name>
+<test> /data02/code/katerj/timeseries/dataset/Trace/Trace_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Trace/Trace_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> Two_Patterns </name>
+<test> /data02/code/katerj/timeseries/dataset/Two_Patterns/Two_Patterns_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/Two_Patterns/Two_Patterns_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> TwoLeadECG </name>
+<test> /data02/code/katerj/timeseries/dataset/TwoLeadECG/TwoLeadECG_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/TwoLeadECG/TwoLeadECG_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> uWaveGestureLibrary_X </name>
+<test> /data02/code/katerj/timeseries/dataset/uWaveGestureLibrary_X/uWaveGestureLibrary_X_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/uWaveGestureLibrary_X/uWaveGestureLibrary_X_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> uWaveGestureLibrary_Y </name>
+<test> /data02/code/katerj/timeseries/dataset/uWaveGestureLibrary_Y/uWaveGestureLibrary_Y_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/uWaveGestureLibrary_Y/uWaveGestureLibrary_Y_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> uWaveGestureLibrary_Z </name>
+<test> /data02/code/katerj/timeseries/dataset/uWaveGestureLibrary_Z/uWaveGestureLibrary_Z_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/uWaveGestureLibrary_Z/uWaveGestureLibrary_Z_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> wafer </name>
+<test> /data02/code/katerj/timeseries/dataset/wafer/wafer_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/wafer/wafer_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> WordsSynonyms </name>
+<test> /data02/code/katerj/timeseries/dataset/WordsSynonyms/WordsSynonyms_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/WordsSynonyms/WordsSynonyms_TRAIN </train>
+</dataset>
+
+<dataset>
+<name> yoga </name>
+<test> /data02/code/katerj/timeseries/dataset/yoga/yoga_TEST </test>
+<train> /data02/code/katerj/timeseries/dataset/yoga/yoga_TRAIN </train>
+</dataset>
+
+
+</datasets>
+
+</experiments>
+
