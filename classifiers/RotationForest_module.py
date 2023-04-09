@@ -6,8 +6,8 @@ import numpy as np
 
 import numpy as np
 from sklearn.decomposition import PCA
-from sklearn.ensemble._forest import ForestClassifier
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble._forest import ForestClassifier, ForestRegressor
+from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.utils import resample, gen_batches, check_random_state
 
 
@@ -125,7 +125,7 @@ class RotationForestClassifier(ForestClassifier):
                  warm_start=False,
                  class_weight=None):
         super(RotationForestClassifier, self).__init__(
-            base_estimator=RotationTreeClassifier(),
+            estimator=RotationTreeClassifier(),
             n_estimators=n_estimators,
             estimator_params=("n_features_per_subset", "rotation_algo",
                               "criterion", "max_depth", "min_samples_split",

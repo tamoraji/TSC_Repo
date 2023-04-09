@@ -6,14 +6,9 @@ import sktime
 
 
 
-<<<<<<< HEAD:classifiers/RISE_module.py
 def RISE(results_path, dataset_name, dataset, labels, nb_folds=5,
         n_estimators = 200,
         n_jobs = 10):
-=======
-def CBOSS(results_path, dataset_name, dataset, labels, nb_folds=5, n_parameter_samples= 250, 
-          max_ensemble_size=50, max_win_len_prop = 0.7,feature_selection="chi2", n_jobs = 10):
->>>>>>> ffded664129b3d440f7d3eae21b7403b1bc7b30c:classifiers/CBOSS_module.py
 
     t_total = time.time() ##Start timing
 
@@ -57,14 +52,9 @@ def CBOSS(results_path, dataset_name, dataset, labels, nb_folds=5, n_parameter_s
 
 
     ## Create Classification module
-<<<<<<< HEAD:classifiers/RISE_module.py
     from sktime.classification.interval_based import RandomIntervalSpectralEnsemble
     classifier = RandomIntervalSpectralEnsemble(n_estimators=n_estimators, n_jobs= n_jobs)
-=======
-    from sktime.classification.dictionary_based import ContractableBOSS
-    classifier = ContractableBOSS(n_parameter_samples= n_parameter_samples , max_ensemble_size = max_ensemble_size , 
-                                  max_win_len_prop = max_win_len_prop ,feature_selection=feature_selection, n_jobs= n_jobs)
->>>>>>> ffded664129b3d440f7d3eae21b7403b1bc7b30c:classifiers/CBOSS_module.py
+
 
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
