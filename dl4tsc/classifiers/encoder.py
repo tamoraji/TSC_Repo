@@ -5,8 +5,8 @@ import tensorflow_addons as tfa
 import numpy as np
 import time
 
-from utils.utils import save_logs
-from utils.utils import calculate_metrics
+from dl4tsc.utils.utils import save_logs
+from dl4tsc.utils.utils import calculate_metrics
 
 class Classifier_ENCODER:
 
