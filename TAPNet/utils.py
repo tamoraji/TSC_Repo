@@ -5,6 +5,8 @@ import sklearn.metrics
 import torch
 import pandas as pd
 import random
+from torch.utils.data import DataLoader, TensorDataset
+from torch.utils.data import Dataset
 
 def boolean_string(s):
     if s not in {'False', 'True'}:
@@ -33,7 +35,7 @@ def load_raw_ts(X_train,X_test,y_train,y_test, tensor_format=True):
     x_test = X_test
     y_test = y_test
     ts = np.concatenate((x_train, x_test), axis=0)
-    ts = np.transpose(ts, axes=(0, 2, 1))
+    #ts = np.transpose(ts, axes=(0, 2, 1))
     labels = np.concatenate((y_train, y_test), axis=0)
     nclass = int(np.amax(labels)) + 1
 
@@ -73,6 +75,23 @@ def accuracy(output, labels):
     f1_score = (sklearn.metrics.f1_score(labels, preds,average='weighted'))
 
     return accuracy_score, f1_score
+
+
+class DealDataset(Dataset):
+
+    def __init__(self, x, y):
+        self.x_data = torch.from_numpy(x)
+        self.y_data = torch.from_numpy(y)
+        self.len = x.shape[0]
+
+    def __getitem__(self, index):
+        return self.x_data[index], self.y_data[index]
+
+    def __len__(self):
+        return self.len
+
+    def num_class(self):
+        return len(set(self.y_data))
 
 
 
