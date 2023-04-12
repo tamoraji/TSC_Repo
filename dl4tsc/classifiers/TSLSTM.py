@@ -59,34 +59,39 @@ class Classifier_TSLSTM:
         input_layer = keras.layers.Input(input_shape)
 
         # define LSTM network
-        lstm1 = keras.layers.LSTM(units=128, return_sequences=True)(input_layer)
+        lstm1 = keras.layers.LSTM(units=128)(input_layer)
         print(lstm1.shape)
         
         # define attention mechanism
         attention_layer = attention()(lstm1)
         print(attention_layer.shape)
 
+        attention_reshaped = tf.expand_dims(attention_layer, axis=-1)
+        print(attention_reshaped.shape)
+
+        result = tf.matmul(attention_reshaped, lstm1)
+        print(result.shape)
 
 
 
-        lstm2 = keras.layers.LSTM(units=128)(lstm1)
-        lstm3 = keras.layers.LSTM(units=128, return_sequences=True)(lstm2)
+        # lstm2 = keras.layers.LSTM(units=128)(lstm1)
+        # lstm3 = keras.layers.LSTM(units=128, return_sequences=True)(lstm2)
 
-        # concatenate skip connection
-        skip_out = keras.layers.Concatenate()([input_layer, lstm3])
+        # # concatenate skip connection
+        # skip_out = keras.layers.Concatenate()([input_layer, lstm3])
 
-        # define attention mechanism
-        attention_out = keras.layers.Dense(1, activation='tanh')(lstm1)
-        attention_out = keras.layers.Flatten()(attention_out)
-        attention_out = keras.layers.Activation('softmax')(attention_out)
-        attention_out = keras.layers.RepeatVector(128)(attention_out)
-        attention_out = keras.layers.Permute([2, 1])(attention_out)
-        attention_out = keras.layers.Reshape((input_shape[1],))(attention_out)
+        # # define attention mechanism
+        # attention_out = keras.layers.Dense(1, activation='tanh')(lstm1)
+        # attention_out = keras.layers.Flatten()(attention_out)
+        # attention_out = keras.layers.Activation('softmax')(attention_out)
+        # attention_out = keras.layers.RepeatVector(128)(attention_out)
+        # attention_out = keras.layers.Permute([2, 1])(attention_out)
+        # attention_out = keras.layers.Reshape((input_shape[1],))(attention_out)
 
 
-        # apply the attention mechanism
-        context_vector = keras.layers.multiply([lstm1, attention_out], name='context_vector')
-        context_vector = keras.layers.Lambda(lambda x: keras.backend.sum(x, axis=1), name='context_vector_sum')(context_vector)
+        # # apply the attention mechanism
+        # context_vector = keras.layers.multiply([lstm1, attention_out], name='context_vector')
+        # context_vector = keras.layers.Lambda(lambda x: keras.backend.sum(x, axis=1), name='context_vector_sum')(context_vector)
 
 
         # define fully-connected layer
