@@ -59,18 +59,28 @@ class Classifier_TSLSTM:
         input_layer = keras.layers.Input(input_shape)
 
         # define LSTM network
-        lstm1 = keras.layers.LSTM(units=128)(input_layer)
+        lstm1 = keras.layers.LSTM(units=128, return_sequences=True)(input_layer)
         print(lstm1.shape)
+        lstm2 = keras.layers.LSTM(units=64)(lstm1)
+        print(lstm2.shape)
         
         # define attention mechanism
-        attention_layer = attention()(lstm1)
+        attention_layer = attention()(lstm2)
         print(attention_layer.shape)
 
         attention_reshaped = tf.expand_dims(attention_layer, axis=-1)
         print(attention_reshaped.shape)
 
-        result = tf.matmul(attention_reshaped, lstm1)
+        result = tf.matmul(attention_reshaped,lstm2 )
         print(result.shape)
+
+        print("apply the attention mechanism")
+        context_vector = keras.layers.multiply([lstm2, attention_reshaped], name='context_vector')
+        print(context_vector.shape)
+        context_vector = keras.layers.Lambda(lambda x: keras.backend.sum(x, axis=1), name='context_vector_sum')(context_vector)
+        print(context_vector.shape)
+        context_vector = tf.expand_dims(context_vector, axis=-1)
+        print(context_vector.shape)
 
 
 
