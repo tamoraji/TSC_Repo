@@ -61,26 +61,26 @@ class Classifier_TSLSTM:
         # define LSTM network
         lstm1 = keras.layers.LSTM(units=128, return_sequences=True)(input_layer)
         print(lstm1.shape)
-        lstm2 = keras.layers.LSTM(units=64)(lstm1)
-        print(lstm2.shape)
+#         lstm2 = keras.layers.LSTM(units=128)(lstm1)
+#         print(lstm2.shape)
         
         # define attention mechanism
-        attention_layer = attention()(lstm2)
+        attention_layer = attention()(lstm1)
         print(attention_layer.shape)
 
-        attention_reshaped = tf.expand_dims(attention_layer, axis=-1)
-        print(attention_reshaped.shape)
+#         attention_reshaped = tf.expand_dims(attention_layer, axis=-1)
+#         print(attention_reshaped.shape)
 
-        result = tf.matmul(attention_reshaped,lstm2 )
-        print(result.shape)
+#         result = tf.matmul(attention_reshaped,lstm2 )
+#         print(result.shape)
 
-        print("apply the attention mechanism")
-        context_vector = keras.layers.multiply([lstm2, attention_reshaped], name='context_vector')
-        print(context_vector.shape)
-        context_vector = keras.layers.Lambda(lambda x: keras.backend.sum(x, axis=1), name='context_vector_sum')(context_vector)
-        print(context_vector.shape)
-        context_vector = tf.expand_dims(context_vector, axis=-1)
-        print(context_vector.shape)
+#         print("apply the attention mechanism")
+#         context_vector = keras.layers.multiply([lstm2, attention_reshaped], name='context_vector')
+#         print(context_vector.shape)
+#         context_vector = keras.layers.Lambda(lambda x: keras.backend.sum(x, axis=1), name='context_vector_sum')(context_vector)
+#         print(context_vector.shape)
+#         context_vector = tf.expand_dims(context_vector, axis=-1)
+#         print(context_vector.shape)
 
 
 
@@ -105,7 +105,7 @@ class Classifier_TSLSTM:
 
 
         # define fully-connected layer
-        fc_out = keras.layers.Dense(units=128, activation='relu')(context_vector)
+        fc_out = keras.layers.Dense(units=128, activation='relu')(attention_layer)
 
         output_layer = keras.layers.Dense(units=nb_classes,activation='softmax')(fc_out)
 
@@ -134,8 +134,10 @@ class Classifier_TSLSTM:
 
         start_time = time.time()
 
-        hist = self.model.fit(x_train, y_train, batch_size=mini_batch_size, epochs=nb_epochs,
-                              verbose=self.verbose, validation_data=(x_val, y_val), callbacks=self.callbacks)
+        #
+        hist = self.model.fit(x_train, y_train, epochs=nb_epochs,
+                              verbose=self.verbose, batch_size=mini_batch_size,
+                              validation_data=(x_val, y_val), callbacks=self.callbacks)
 
         duration = time.time() - start_time
 
