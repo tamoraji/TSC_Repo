@@ -11,6 +11,8 @@ from dl4tsc.utils.layer_utils import AttentionLSTM
 
 from dl4tsc.utils.utils import save_logs
 from dl4tsc.utils.utils import calculate_metrics
+from keras.utils import custom_object_scope
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
 
 def squeeze_excite_block(input):
     ''' Create a squeeze-excite block
@@ -21,7 +23,7 @@ def squeeze_excite_block(input):
 
     Returns: a keras tensor
     '''
-    filters = input._keras_shape[-1] # channel_axis = -1 for TF
+    filters = input.shape[-1] # channel_axis = -1 for TF
 
     se = keras.layers.GlobalAveragePooling1D()(input)
     se = keras.layers.Reshape((1, filters))(se)
@@ -30,9 +32,34 @@ def squeeze_excite_block(input):
     se = keras.layers.multiply([input, se])
     return se
 
+class attention(Layer):
+    def __init__(self,name="attention",**kwargs):
+        super(attention,self).__init__(**kwargs)
+ 
+    def build(self,input_shape):
+        self.W=self.add_weight(name='attention_weight', shape=(input_shape[-1],1), 
+                               initializer='random_normal', trainable=True)
+        self.b=self.add_weight(name='attention_bias', shape=(input_shape[1],1), 
+                               initializer='zeros', trainable=True)        
+        super(attention, self).build(input_shape)
+ 
+    def call(self,x):
+        # Alignment scores. Pass them through tanh function
+        e = K.tanh(K.dot(x,self.W)+self.b)
+        # Remove dimension of size 1
+        e = K.squeeze(e, axis=-1)   
+        # Compute the weights
+        alpha = K.softmax(e)
+        # Reshape to tensorFlow format
+        alpha = K.expand_dims(alpha, axis=-1)
+        # Compute the context vector
+        context = x * alpha
+        context = K.sum(context, axis=1)
+        return context
+
 class Classifier_MALSTMFCN:
 
-    def __init__(self, output_directory, input_shape, nb_classes, verbose=True,build=True, lr = 0.001, batch_size=128, epoch = 100):
+    def __init__(self, output_directory, input_shape, nb_classes, verbose=True,build=True, lr = 0.001, batch_size=128, epoch = 100, units= 128):
         self.output_directory = output_directory
 
         if build == True:
@@ -44,6 +71,7 @@ class Classifier_MALSTMFCN:
             self.lr = lr
             self.batch_size = batch_size
             self.epoch = epoch
+            self.units=units
 
         return
 
@@ -60,7 +88,7 @@ class Classifier_MALSTMFCN:
         x = keras.layers.Permute((2, 1))(x)
 
         x = keras.layers.Masking()(x)
-        x = AttentionLSTM(units=128)(x)
+        x = attention()(x)
         x = keras.layers.Dropout(0.8)(x)
 
         y = keras.layers.Permute((2, 1))(input_layer)
@@ -118,8 +146,13 @@ class Classifier_MALSTMFCN:
         duration = time.time() - start_time
 
         self.model.save(self.output_directory+'last_model.hdf5')
-
-        model = keras.models.load_model(self.output_directory + 'best_model.hdf5')
+        
+#         config = model.get_config()
+        custom_objects = {"attention": attention}
+#         with keras.utils.custom_object_scope(custom_objects):
+#             model = keras.Model.from_config(config)
+        model = keras.models.load_model(self.output_directory+'best_model.hdf5', custom_objects=custom_objects)
+#         model = keras.models.load_model(self.output_directory + 'best_model.hdf5')
 
         y_pred = model.predict(x_val)
 
@@ -127,6 +160,14 @@ class Classifier_MALSTMFCN:
         y_pred = np.argmax(y_pred, axis=1)
 
         save_logs(self.output_directory, hist, y_pred, y_true, duration,lr=False)
+        
+        # calculate the evaluation metrics
+        accuracy = accuracy_score(y_true, y_pred)
+        f1 = f1_score(y_true, y_pred, average='weighted')
+        confusion = confusion_matrix(y_true, y_pred)
+        report = classification_report(y_true, y_pred, zero_division=1)
+
+        return accuracy, f1, confusion, report
 
         keras.backend.clear_session()
 

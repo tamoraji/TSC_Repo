@@ -60,81 +60,8 @@ def _time_distributed_dense(x, w, b=None, dropout=None,
 
 
 class AttentionLSTM(LSTM):
-    """Long-Short Term Memory unit - with Attention.
 
-    # Arguments
-        units: Positive integer, dimensionality of the output space.
-        activation: Activation function to use
-            (see [activations](keras/activations.md)).
-            If you pass None, no activation is applied
-            (ie. "linear" activation: `a(x) = x`).
-        recurrent_activation: Activation function to use
-            for the recurrent step
-            (see [activations](keras/activations.md)).
-        attention_activation: Activation function to use
-            for the attention step. If you pass None, no activation is applied
-            (ie. "linear" activation: `a(x) = x`).
-            (see [activations](keras/activations.md)).
-        use_bias: Boolean, whether the layer uses a bias vector.
-        kernel_initializer: Initializer for the `kernel` weights matrix,
-            used for the linear transformation of the inputs.
-            (see [initializers](../initializers.md)).
-        recurrent_initializer: Initializer for the `recurrent_kernel`
-            weights matrix,
-            used for the linear transformation of the recurrent state.
-            (see [initializers](../initializers.md)).
-        bias_initializer: Initializer for the bias vector
-            (see [initializers](../initializers.md)).
-        attention_initializer: Initializer for the `attention_kernel` weights
-            matrix, used for the linear transformation of the inputs.
-            (see [initializers](../initializers.md)).
-        unit_forget_bias: Boolean.
-            If True, add 1 to the bias of the forget gate at initialization.
-            Setting it to true will also force `bias_initializer="zeros"`.
-            This is recommended in [Jozefowicz et al.](http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf)
-        kernel_regularizer: Regularizer function applied to
-            the `kernel` weights matrix
-            (see [regularizer](../regularizers.md)).
-        recurrent_regularizer: Regularizer function applied to
-            the `recurrent_kernel` weights matrix
-            (see [regularizer](../regularizers.md)).
-        bias_regularizer: Regularizer function applied to the bias vector
-            (see [regularizer](../regularizers.md)).
-        activity_regularizer: Regularizer function applied to
-            the output of the layer (its "activation").
-            (see [regularizer](../regularizers.md)).
-        attention_regularizer: Regularizer function applied to
-            the `attention_kernel` weights matrix
-            (see [regularizer](../regularizers.md)).
-        kernel_constraint: Constraint function applied to
-            the `kernel` weights matrix
-            (see [constraints](../constraints.md)).
-        recurrent_constraint: Constraint function applied to
-            the `recurrent_kernel` weights matrix
-            (see [constraints](../constraints.md)).
-        bias_constraint: Constraint function applied to the bias vector
-            (see [constraints](../constraints.md)).
-        attention_constraint: Constraint function applied to
-            the `attention_kernel` weights matrix
-            (see [constraints](../constraints.md)).
-        dropout: Float between 0 and 1.
-            Fraction of the units to drop for
-            the linear transformation of the inputs.
-        recurrent_dropout: Float between 0 and 1.
-            Fraction of the units to drop for
-            the linear transformation of the recurrent state.
-        return_attention: Returns the attention vector instead of
-            the internal state.
-
-    # References
-        - [Long short-term memory](http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf) (original 1997 paper)
-        - [Learning to forget: Continual prediction with LSTM](http://www.mitpressjournals.org/doi/pdf/10.1162/089976600300015015)
-        - [Supervised sequence labeling with recurrent neural networks](http://www.cs.toronto.edu/~graves/preprint.pdf)
-        - [A Theoretically Grounded Application of Dropout in Recurrent Neural Networks](http://arxiv.org/abs/1512.05287)
-        - [Bahdanau, Cho & Bengio (2014), "Neural Machine Translation by Jointly Learning to Align and Translate"](https://arxiv.org/pdf/1409.0473.pdf)
-        - [Xu, Ba, Kiros, Cho, Courville, Salakhutdinov, Zemel & Bengio (2016), "Show, Attend and Tell: Neural Image Caption Generation with Visual Attention"](http://arxiv.org/pdf/1502.03044.pdf)
-    """
-    @interfaces.legacy_recurrent_support
+    #@interfaces.legacy_recurrent_support
     def __init__(self, units,
                  activation='tanh',
                  recurrent_activation='hard_sigmoid',
