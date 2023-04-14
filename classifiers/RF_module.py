@@ -17,12 +17,12 @@ def RF(results_path, dataset_name, dataset, labels, nb_folds=5, n_trees=500 ):
     if dataset.shape[2] > 1:
         print("RF is not capable of doing classification on MTS. so it will be done on only the first dimension")
     
-    dataset_1 = dataset[:,:,0]
+    dataset_1 = dataset[:,:,0] #Input shape=[N,T]
     labels = labels.reshape((-1,))
 
     ## Create Classification module
     from sklearn.ensemble import RandomForestClassifier
-    classifier = RandomForestClassifier(n_estimators=n_trees, n_jobs=100)
+    classifier = RandomForestClassifier(n_estimators=n_trees, n_jobs=10)
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
     accuracy_scores = []
@@ -69,9 +69,10 @@ def RF(results_path, dataset_name, dataset, labels, nb_folds=5, n_trees=500 ):
             f.write(f'Classification report:\n{report}\n\n')
         
     with open(f'{results_path}/dataset_{dataset_name}_RF.txt', 'w') as f:
-        f.write("Mean accuracy: {:.3f} (std={:.3f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))
-        f.write("Mean F1 score: {:.3f} (std={:.3f})\n".format(np.mean(f1_scores), np.std(f1_scores)))
+        f.write("Mean accuracy: {:.4f} (std={:.3f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))
+        f.write("Mean F1 score: {:.4f} (std={:.3f})\n".format(np.mean(f1_scores), np.std(f1_scores)))
         f.write("Mean confusion matrix:\n{}\n".format(np.array2string(np.mean(confusion_matrices, axis=0))))
+        f.write("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
     print(" Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))

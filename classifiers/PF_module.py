@@ -23,7 +23,7 @@ def PF(results_path, dataset_name, dataset, labels, nb_folds=5, n_estimators= 10
 
     ## Create Classification module
     from sktime.classification.distance_based import ProximityForest
-    classifier = ProximityForest(n_estimators = n_estimators, n_stump_evaluations= n_stump_evaluations , n_jobs = 64)
+    classifier = ProximityForest(n_estimators = n_estimators, n_stump_evaluations= n_stump_evaluations , n_jobs = 10)
 
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
@@ -64,16 +64,17 @@ def PF(results_path, dataset_name, dataset, labels, nb_folds=5, n_estimators= 10
         print(f" fold {fold+1} is Finished!")
         
         # save the output to a text file
-        with open(f'{results_path}/dataset_{dataset_name}_RF_fold_{fold+1}.txt', 'w') as f:
+        with open(f'{results_path}/dataset_{dataset_name}_PF_fold_{fold+1}.txt', 'w') as f:
             f.write(f'Accuracy: {accuracy}\n')
             f.write(f'F1 Score: {f1}\n')
             f.write(f'Confusion Matrix:\n{confusion}\n\n')
             f.write(f'Classification report:\n{report}\n\n')
         
-    with open(f'{results_path}/dataset_{dataset_name}_RF.txt', 'w') as f:
-        f.write("Mean accuracy: {:.3f} (std={:.3f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))
-        f.write("Mean F1 score: {:.3f} (std={:.3f})\n".format(np.mean(f1_scores), np.std(f1_scores)))
+    with open(f'{results_path}/dataset_{dataset_name}_PF.txt', 'w') as f:
+        f.write("Mean accuracy: {:.4f} (std={:.3f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))
+        f.write("Mean F1 score: {:.4f} (std={:.3f})\n".format(np.mean(f1_scores), np.std(f1_scores)))
         f.write("Mean confusion matrix:\n{}\n".format(np.array2string(np.mean(confusion_matrices, axis=0))))
+        f.write("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
     print(" Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))

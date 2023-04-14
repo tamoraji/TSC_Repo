@@ -23,7 +23,7 @@ def KNN(results_path, dataset_name, dataset, labels, nb_folds=5, dis='euclidean'
 
     ## Create Classification module
     from sktime.classification.distance_based import KNeighborsTimeSeriesClassifier
-    classifier = KNeighborsTimeSeriesClassifier(distance= dis, n_jobs=-1)
+    classifier = KNeighborsTimeSeriesClassifier(distance= dis, n_jobs=10)
 
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
@@ -51,7 +51,7 @@ def KNN(results_path, dataset_name, dataset, labels, nb_folds=5, dis='euclidean'
         print(f1)
 
         confusion = confusion_matrix(y_test, y_pred)
-        #print(confusion)
+        print(confusion)
 
         accuracy_scores.append(accuracy)
         f1_scores.append(f1)
