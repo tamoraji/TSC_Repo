@@ -55,7 +55,7 @@ for dataset in datasets:
 
 
 
-    #Run The CIF Module
+    #Run The BOSS Module
     BOSS_module.BOSS(results_path, Dataset_name, Dataset, Labels, nb_folds=5, max_ensemble_size=500, max_win_len_prop = 1,
                      min_window = 10, alphabet_size=4 , feature_selection = "chi2")
 

@@ -16,8 +16,7 @@ def TDE(results_path, dataset_name, dataset, labels, nb_folds=5,
     print(f"\n The number of data samples (N) is:{dataset.shape[0]}")
     print(f"\n The number of TS length (T) is:{dataset.shape[1]}")
     print(f"\n The number of TS dimention (M) is:{dataset.shape[2]}")
-    #if dataset.shape[2] > 1:
-        #print("CBOSS is not capable of doing classification on MTS. so it will be done on only the first dimension")
+
 
     #input shape = [n_instances, series_length]
     ##Remove the last axis
