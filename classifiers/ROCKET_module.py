@@ -159,7 +159,7 @@ def ROCKET(results_path, dataset_name, dataset, labels, nb_folds=5, n_kernel=100
 
 
     ## Create Classification module
-    classifier = ROCKETClassifier(num_kernels= n_kernel ,n_jobs=-1)
+    classifier = ROCKETClassifier(num_kernels= n_kernel ,n_jobs=10)
 
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
@@ -207,9 +207,10 @@ def ROCKET(results_path, dataset_name, dataset, labels, nb_folds=5, n_kernel=100
             f.write(f'Classification report:\n{report}\n\n')
         
     with open(f'{results_path}/dataset_{dataset_name}_ROCKET.txt', 'w') as f:
-        f.write("Mean accuracy: {:.3f} (std={:.3f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))
-        f.write("Mean F1 score: {:.3f} (std={:.3f})\n".format(np.mean(f1_scores), np.std(f1_scores)))
+        f.write("Mean accuracy: {:.4f} (std={:.3f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))
+        f.write("Mean F1 score: {:.4f} (std={:.3f})\n".format(np.mean(f1_scores), np.std(f1_scores)))
         f.write("Mean confusion matrix:\n{}\n".format(np.array2string(np.mean(confusion_matrices, axis=0))))
+        f.write("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
     print(" Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))

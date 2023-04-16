@@ -4,9 +4,12 @@ import tensorflow as tf
 import tensorflow_addons as tfa
 import numpy as np
 import time
+import tensorflow.keras.backend as K
+from keras.layers import Layer
 
 from dl4tsc.utils.utils import save_logs
 from dl4tsc.utils.utils import calculate_metrics
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
 
 class Classifier_ENCODER:
 
@@ -93,8 +96,15 @@ class Classifier_ENCODER:
         y_pred = np.argmax(y_pred, axis=1)
 
         save_logs(self.output_directory, hist, y_pred, y_true, duration, lr=False)
+        
+        # calculate the evaluation metrics
+        accuracy = accuracy_score(y_true, y_pred)
+        f1 = f1_score(y_true, y_pred, average='weighted')
+        confusion = confusion_matrix(y_true, y_pred)
+        report = classification_report(y_true, y_pred, zero_division=1)
+        
+        return accuracy, f1, confusion, report
 
-        keras.backend.clear_session()
 
     def predict(self, x_test,y_true,x_train,y_train,y_test,return_df_metrics = True):
         model_path = self.output_directory + 'best_model.hdf5'
