@@ -5,9 +5,12 @@ import tensorflow.keras as keras
 import tensorflow as tf
 import numpy as np
 import time
+import tensorflow.keras.backend as K
+from keras.layers import Layer
 
 import matplotlib
 from dl4tsc.utils.utils import save_test_duration
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
 
 matplotlib.use('agg')
 import matplotlib.pyplot as plt
@@ -148,11 +151,17 @@ class Classifier_RESNET:
         # convert the predicted from binary to integer
         y_pred = np.argmax(y_pred, axis=1)
 
-        df_metrics = save_logs(self.output_directory, hist, y_pred, y_true, duration)
+        save_logs(self.output_directory, hist, y_pred, y_true, duration)
+        
+        # calculate the evaluation metrics
+        accuracy = accuracy_score(y_true, y_pred)
+        f1 = f1_score(y_true, y_pred, average='weighted')
+        confusion = confusion_matrix(y_true, y_pred)
+        report = classification_report(y_true, y_pred, zero_division=1)
 
-        keras.backend.clear_session()
+        return accuracy, f1, confusion, report
 
-        return df_metrics
+        
 
     def predict(self, x_test, y_true, x_train, y_train, y_test, return_df_metrics=True):
         start_time = time.time()
