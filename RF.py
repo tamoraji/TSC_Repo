@@ -14,7 +14,7 @@ datasets = [
 "ETCHING_Multivar",
 "MFPT_48KHZ_Univar",
 "MFPT_96KHZ_Univar",
-"PADERBORN_6KHZ_Univar",
+"PADERBORN_64KHZ_Univar",
 "PADERBORN_4KHZ_Univar",
 "PADERBORN_64KHZ_Multivar",
 "PADERBORN_4KHZ_Multivar",

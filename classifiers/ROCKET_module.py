@@ -155,6 +155,7 @@ def ROCKET(results_path, dataset_name, dataset, labels, nb_folds=5, n_kernel=100
     #input shape = [n_instances, n_dimensions, series_length]
     ##Swzp axis
     Dataset = np.swapaxes(dataset, 1,2)
+    labels = labels.squeeze()
 
 
 

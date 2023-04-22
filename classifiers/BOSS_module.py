@@ -7,7 +7,7 @@ import sktime
 
 
 def BOSS(results_path, dataset_name, dataset, labels, nb_folds=5, max_ensemble_size=500, max_win_len_prop = 1,
-          min_window = 10,alphabet_size=4 , feature_selection = "chi2" ):
+          min_window = 10,alphabet_size=4):
 
     t_total = time.time() ##Start timing
 
@@ -21,6 +21,7 @@ def BOSS(results_path, dataset_name, dataset, labels, nb_folds=5, max_ensemble_s
     #input shape = [n_instances, series_length]
     ##Remove the last axis
     Dataset = dataset[:,:,0]
+    labels = labels.squeeze()
 
     ## Input "n" series with "d" dimensions of length "m" . default config  based on [4] is : 
     """
@@ -45,7 +46,7 @@ def BOSS(results_path, dataset_name, dataset, labels, nb_folds=5, max_ensemble_s
     from sktime.classification.dictionary_based import BOSSEnsemble
     classifier = BOSSEnsemble(max_ensemble_size= max_ensemble_size,max_win_len_prop = max_win_len_prop,
                               min_window= min_window , alphabet_size= alphabet_size,
-                              feature_selection = feature_selection , n_jobs=10)
+                              n_jobs=1)
 
 
     kf = KFold(n_splits=nb_folds, shuffle=True)

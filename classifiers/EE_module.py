@@ -26,6 +26,7 @@ def EE(results_path, dataset_name, dataset, labels, nb_folds=5,
     #input shape = [n_instances, series_length]
     ##Remove the last axis
     Dataset = dataset[:,:,0]
+    labels = labels.squeeze()
 
     #input shape = [n_instances, n_dimensions, series_length]
     ##Swzp axis

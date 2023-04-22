@@ -3,18 +3,22 @@ import sklearn
 import numpy as np
 import os
 import sys
+import time
 
 # define a list of datasets
+# datasets = [
+# "BEARING_Univar",
+# "PHM2022_Multivar",
+# "PHM2022_Univar_PIN",
+# "PHM2022_Univar_PO",
+# "PHM2022_Univar_PDIN",
+# "ETCHING_Multivar",
+# "MFPT_48KHZ_Univar",
+# "MFPT_96KHZ_Univar",
+# "PADERBORN_64KHZ_Univar"
+# ]
+
 datasets = [
-"BEARING_Univar",
-"PHM2022_Multivar",
-"PHM2022_Univar_PIN",
-"PHM2022_Univar_PO",
-"PHM2022_Univar_PDIN",
-"ETCHING_Multivar",
-"MFPT_48KHZ_Univar",
-"MFPT_96KHZ_Univar",
-"PADERBORN_6KHZ_Univar",
 "PADERBORN_4KHZ_Univar",
 "PADERBORN_64KHZ_Multivar",
 "PADERBORN_4KHZ_Multivar",
@@ -58,6 +62,8 @@ n_folds = 5
 for dataset in datasets:
     Dataset_name = dataset + "_Dataset"
     Dataset = np.load(datasets_path + "/" + Dataset_name + ".npy")
+    start = time.time() ##Start timing
+    print(f"Starting to work on {Dataset_name} at {start}")
     
 
     Labels_name = dataset + "_Labels"
@@ -78,6 +84,7 @@ for dataset in datasets:
 
     #Run The Support Vector Machine (SVM) Module
     SVM_module.SVM(results_path, Dataset_name, Dataset, Labels, nb_folds= n_folds, C=10)
+    print(f"Working on {Dataset_name} finished successfully!")
 
     
 

@@ -18,6 +18,7 @@ def CIF(results_path, dataset_name, dataset, labels, nb_folds=5, n_estimators=50
     #input shape = [n_instances, n_dimensions, series_length]
     ##Swzp axis
     Dataset = np.swapaxes(dataset, 1,2)
+    labels = labels.squeeze()
 
     ## Input "n" series with "d" dimensions of length "m" . default config  based on [4] is : 
     ## Default (trees: n_estimators = 500, intervals: n_intervals = sqrt(M) × sqrt(T), att_subsample_size = 8 attributes per tree)
