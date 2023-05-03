@@ -130,6 +130,16 @@ def TDE(results_path, dataset_name, dataset, labels, nb_folds=5,
         f.write("Mean confusion matrix:\n{}\n".format(np.array2string(np.mean(confusion_matrices, axis=0))))
         f.write("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
+    #clear memory
+    del classifier
+    del y_pred
+    del Dataset
+    del labels
+    del X_train
+    del X_test
+    del y_train
+    del y_test
+    
     print(" Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 

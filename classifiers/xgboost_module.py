@@ -4,6 +4,7 @@ import time
 import numpy as np
 import sktime
 import xgboost as xgb
+from sklearn.preprocessing import LabelEncoder
 
 
 
@@ -31,6 +32,8 @@ def XGBOOST(results_path, dataset_name, dataset, labels, nb_folds=5,
     ##Remove the last axis
     Dataset = dataset[:,:,0]
     labels = labels.squeeze()
+    le = LabelEncoder()
+    labels = le.fit_transform(labels)
 
     #input shape = [n_instances, n_dimensions, series_length]
     ##Swzp axis
@@ -291,6 +294,7 @@ def XGBOOST(results_path, dataset_name, dataset, labels, nb_folds=5,
             f.write(f'F1 Score: {f1}\n')
             f.write(f'Confusion Matrix:\n{confusion}\n\n')
             f.write(f'Classification report:\n{report}\n\n')
+            f.write("Total time elapsed: {:.4f}s".format(time.time() - t_total))
         
     with open(f'{results_path}/dataset_{dataset_name}_XGBoost.txt', 'w') as f:
         f.write("Mean accuracy: {:.4f} (std={:.4f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))
@@ -298,6 +302,16 @@ def XGBOOST(results_path, dataset_name, dataset, labels, nb_folds=5,
         f.write("Mean confusion matrix:\n{}\n".format(np.array2string(np.mean(confusion_matrices, axis=0))))
         f.write("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
+    #clear memory
+    del classifier
+    del y_pred
+    del Dataset
+    del labels
+    del X_train
+    del X_test
+    del y_train
+    del y_test
+    
     print(" Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 

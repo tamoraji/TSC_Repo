@@ -18,6 +18,7 @@ class Classifier_MLP:
 		self.output_directory = output_directory
 		if build == True:
 			self.model = self.build_model(input_shape, nb_classes)
+			self.model.summary()
 			if(verbose==True):
 				self.model.summary()
 			self.verbose = verbose
@@ -47,7 +48,7 @@ class Classifier_MLP:
 		model.compile(loss='categorical_crossentropy', optimizer=keras.optimizers.Adadelta(),
 			metrics=['accuracy'])
 
-		reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor='loss', factor=0.5, patience=200, min_lr=0.1)
+		reduce_lr = keras.callbacks.ReduceLROnPlateau(monitor='loss', factor=0.5, patience=100, min_lr=0.1)
 
 		file_path = self.output_directory+'best_model.hdf5' 
 
@@ -63,8 +64,8 @@ class Classifier_MLP:
 			print('error')
 			exit()
 		# x_val and y_val are only used to monitor the test loss and NOT for training  
-		batch_size = 32
-		nb_epochs = 200
+		batch_size = 16
+		nb_epochs = 1000
 
 		mini_batch_size = int(min(x_train.shape[0]/10, batch_size))
 

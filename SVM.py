@@ -15,12 +15,12 @@ import time
 # "ETCHING_Multivar",
 # "MFPT_48KHZ_Univar",
 # "MFPT_96KHZ_Univar",
-# "PADERBORN_64KHZ_Univar"
+# "PADERBORN_64KHZ_Univar",
+#"PADERBORN_4KHZ_Univar",
+#"PADERBORN_64KHZ_Multivar",
 # ]
 
 datasets = [
-"PADERBORN_4KHZ_Univar",
-"PADERBORN_64KHZ_Multivar",
 "PADERBORN_4KHZ_Multivar",
 "Hydraulic_systems_10HZ_Multivar",
 "Hydraulic_systems_100HZ_Multivar",
