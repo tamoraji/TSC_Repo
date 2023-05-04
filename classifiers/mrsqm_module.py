@@ -101,7 +101,7 @@ def MRSQM(results_path, dataset_name, dataset, labels, nb_folds=5,
         report_list.append(report)
         print(report)
         
-        print(f" fold {fold+1} is Finished!")
+        print(f" fold {fold+1} for {dataset_name} is Finished!")
         
         # save the output to a text file
         with open(f'{results_path}/dataset_{dataset_name}_MrSQM_fold_{fold+1}.txt', 'w') as f:
@@ -109,6 +109,8 @@ def MRSQM(results_path, dataset_name, dataset, labels, nb_folds=5,
             f.write(f'F1 Score: {f1}\n')
             f.write(f'Confusion Matrix:\n{confusion}\n\n')
             f.write(f'Classification report:\n{report}\n\n')
+            f.write("Total time elapsed: {:.4f}s".format(time.time() - t_total))
+
         
     with open(f'{results_path}/dataset_{dataset_name}_MrSQM.txt', 'w') as f:
         f.write("Mean accuracy: {:.4f} (std={:.4f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))
@@ -116,6 +118,16 @@ def MRSQM(results_path, dataset_name, dataset, labels, nb_folds=5,
         f.write("Mean confusion matrix:\n{}\n".format(np.array2string(np.mean(confusion_matrices, axis=0))))
         f.write("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 
+    #clear memory
+    del classifier
+    del y_pred
+    del Dataset
+    del labels
+    del X_train
+    del X_test
+    del y_train
+    del y_test
+    
     print(" Finished!")
     print("Total time elapsed: {:.4f}s".format(time.time() - t_total))
 

@@ -42,7 +42,7 @@ datasets = [
 "PHM2022_Univar_PDIN",
 "MFPT_48KHZ_Univar",
 "MFPT_96KHZ_Univar",
-# "CWRU_12k_DE_univar",
+"CWRU_12k_DE_univar",
 # "CWRU_12k_DE_multivar",
 # "CWRU_12k_FE_univar",
 # "CWRU_12k_FE_multivar",

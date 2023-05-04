@@ -30,8 +30,8 @@ datasets = [
 # "PADERBORN_4KHZ_Univar",
 # "PADERBORN_64KHZ_Multivar",
 # "PADERBORN_4KHZ_Multivar",
-"BEARING_Univar",
-# "ETCHING_Multivar",
+# "BEARING_Univar",
+"ETCHING_Multivar",
 ]
 
 datasets_path = "../datasets"
@@ -94,7 +94,8 @@ for dataset in datasets:
                         gamma=0,
                         subsample=1,
                         colsample_bytree=1,
-                        objective='multi:softmax',
+#                         objective='multi:softmax',
+                        objective='binary:logistic',
                         n_jobs = 10)
     
     print(f"Working on {Dataset_name} finished successfully!")
