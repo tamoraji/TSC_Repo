@@ -11,6 +11,8 @@ from keras.layers import Layer
 from dl4tsc.utils.utils import save_logs
 from dl4tsc.utils.utils import calculate_metrics
 from sklearn.metrics import accuracy_score, f1_score, confusion_matrix, classification_report
+from keras.utils import custom_object_scope
+
 
 class Classifier_FCN:
 
