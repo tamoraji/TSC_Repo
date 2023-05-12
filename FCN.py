@@ -49,8 +49,8 @@ datasets = [
 # "CWRU_48k_DE_univar",
 # "CWRU_48k_DE_multivar",
 "PADERBORN_64KHZ_Univar",
-# "PADERBORN_4KHZ_Univar",
-# "PADERBORN_64KHZ_Multivar",
+"PADERBORN_4KHZ_Univar",
+"PADERBORN_64KHZ_Multivar",
 # "PADERBORN_4KHZ_Multivar",
 # "BEARING_Univar",
 ]
