@@ -135,7 +135,7 @@ def FBL(results_path, dataset_name, dataset, labels, nb_folds=5):
         report_list.append(report)
         print(report)
         
-        print(f" fold {fold+1} is Finished!")
+        print(f" fold {fold+1} of {dataset_name} is Finished!")
         
         # save the output to a text file
         with open(f'{results_path}/dataset_{dataset_name}_FBL_fold_{fold+1}.txt', 'w') as f:

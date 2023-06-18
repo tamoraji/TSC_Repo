@@ -39,7 +39,6 @@ datasets = [
 # "PHM2022_Multivar",
 # "PHM2022_Univar_PIN",
 # "PHM2022_Univar_PO",
-# "PHM2022_Univar_PDIN",#Run this one again. got error
 # "MFPT_48KHZ_Univar",
 # "MFPT_96KHZ_Univar",
 # "CWRU_12k_DE_univar",
@@ -48,11 +47,12 @@ datasets = [
 # "CWRU_12k_FE_multivar",
 # "CWRU_48k_DE_univar",
 # "CWRU_48k_DE_multivar",
-"PADERBORN_64KHZ_Univar",
-"PADERBORN_4KHZ_Univar",
-"PADERBORN_64KHZ_Multivar",
+# "PADERBORN_64KHZ_Univar",
+# "PADERBORN_4KHZ_Univar",
+# "PADERBORN_64KHZ_Multivar",
 # "PADERBORN_4KHZ_Multivar",
 # "BEARING_Univar",
+"PHM2022_Univar_PDIN",
 ]
 
 

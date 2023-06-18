@@ -144,8 +144,11 @@ class Classifier_TSLSTM:
         duration = time.time() - start_time
 
         self.model.save(self.output_directory+'last_model.hdf5')
+        
+        custom_objects = {"attention": attention}
 
-        model = keras.models.load_model(self.output_directory + 'best_model.hdf5')
+
+        model = keras.models.load_model(self.output_directory + 'best_model.hdf5', custom_objects=custom_objects)
 
         y_pred = model.predict(x_val)
 

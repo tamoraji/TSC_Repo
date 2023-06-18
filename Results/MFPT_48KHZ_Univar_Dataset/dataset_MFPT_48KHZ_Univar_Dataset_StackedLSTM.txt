@@ -1,0 +1,7 @@
+Mean accuracy: 0.9984 (std=0.002)
+Mean F1 score: 0.9984 (std=0.002)
+Mean confusion matrix:
+[[101.6   0.6   0. ]
+ [  0.  189.8   0. ]
+ [  0.    0.   87.6]]
+Total time elapsed: 11058.2418s

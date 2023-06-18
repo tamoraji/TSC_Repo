@@ -19,6 +19,7 @@ from dl4tsc.utils.utils import save_logs
 from dl4tsc.utils.utils import calculate_metrics
 
 
+
 class Classifier_RESNET:
 
     def __init__(self, output_directory, input_shape, nb_classes, verbose=False, build=True, load_weights=False):
@@ -128,8 +129,8 @@ class Classifier_RESNET:
             print('error')
             exit()
         # x_val and y_val are only used to monitor the test loss and NOT for training
-        batch_size = 64
-        nb_epochs = 1500
+        batch_size = 32
+        nb_epochs = 1000
 
         mini_batch_size = int(min(x_train.shape[0] / 10, batch_size))
 
