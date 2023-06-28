@@ -18,18 +18,18 @@ datasets = [
 # "CWRU_12k_FE_univar",#Starting to work on CWRU_12k_FE_univar_Dataset at 2023-06-10 11:37:03 no results after 48 hours
 # "CWRU_12k_FE_multivar",#Starting to work on CWRU_12k_FE_multivar_Dataset at 2023-06-12 15:56:06
 # "Hydraulic_systems_100HZ_Multivar",#Starting to work on Hydraulic_systems_100HZ_Multivar_Dataset at 2023-06-16 19:15:25
-"Gas_sensors_home_activity",#Starting to work on Gas_sensors_home_activity_Dataset at 2023-06-18 10:34:52
-"BEARING_Univar",
-# "PHM2022_Multivar",
-# "PHM2022_Univar_PIN",
-# "PHM2022_Univar_PO",
-# "PHM2022_Univar_PDIN",
+# "Gas_sensors_home_activity",#Starting to work on Gas_sensors_home_activity_Dataset at 2023-06-18 10:34:52
+# "MFPT_48KHZ_Univar",#Starting to work on MFPT_48KHZ_Univar_Dataset at 2023-06-20 10:55:08
+# "MFPT_96KHZ_Univar",
 #"CWRU_48k_DE_univar",
 #"CWRU_48k_DE_multivar",
-#"MFPT_48KHZ_Univar",
-#"MFPT_96KHZ_Univar",
+# "PHM2022_Univar_PIN",#Starting to work on PHM2022_Univar_PIN_Dataset at 2023-06-22 14:45:23 -> Memory
+# "PHM2022_Univar_PO", #Starting to work on PHM2022_Univar_PO_Dataset at 2023-06-24 11:40:09 -> memory
+# "PHM2022_Univar_PDIN",
+# "BEARING_Univar",#Starting to work on BEARING_Univar_Dataset at 2023-06-26 10:15:17 -> time
+"PADERBORN_4KHZ_Univar",
+# "PHM2022_Multivar",
 #"PADERBORN_64KHZ_Univar",
-# "PADERBORN_4KHZ_Univar",
 # "PADERBORN_64KHZ_Multivar",
 # "PADERBORN_4KHZ_Multivar",
 ]

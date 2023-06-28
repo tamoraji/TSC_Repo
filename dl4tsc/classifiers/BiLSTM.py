@@ -34,12 +34,12 @@ class Classifier_BiLSTM:
 
         input_layer = keras.layers.Input(input_shape)
 
-        bilstm1 = keras.layers.Bidirectional(keras.layers.LSTM(8) )(input_layer)
+        bilstm1 = keras.layers.Bidirectional(keras.layers.LSTM(128) )(input_layer)
         dropout1 = keras.layers.Dropout(0.1)(bilstm1)
 
-        dense = keras.layers.Dense(8, activation='relu')(dropout1)
+        dense = keras.layers.Dense(64, activation='relu')(dropout1)
 
-        dense2 = keras.layers.Dense(8, activation='relu')(dense)
+        dense2 = keras.layers.Dense(64, activation='relu')(dense)
 
         output_layer = keras.layers.Dense(units=nb_classes,activation='softmax')(dense2)
 

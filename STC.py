@@ -19,16 +19,15 @@ datasets = [
 # "CWRU_12k_DE_multivar",
 # "CWRU_12k_FE_univar",
 # "CWRU_12k_FE_multivar",
-"CWRU_48k_DE_univar",#Starting to work on CWRU_48k_DE_univar_Dataset at 2023-06-12 15:44:14 n_jobs=20 from here
-"CWRU_48k_DE_multivar",
-"MFPT_48KHZ_Univar",
-"MFPT_96KHZ_Univar",
-# "PHM2022_Multivar",
-# "PHM2022_Univar_PIN",
-# "PHM2022_Univar_PO",
-# "PHM2022_Univar_PDIN",
-
-# "BEARING_Univar",
+# "CWRU_48k_DE_univar",#Starting to work on CWRU_48k_DE_univar_Dataset at 2023-06-12 15:44:14 n_jobs=20 from here
+# "CWRU_48k_DE_multivar", #Starting to work on CWRU_48k_DE_multivar_Dataset at 2023-06-21 00:05:39
+# "MFPT_48KHZ_Univar",#Starting to work on MFPT_48KHZ_Univar_Dataset at 2023-06-27 10:43:10
+"MFPT_96KHZ_Univar",#Start from here
+"PHM2022_Multivar",
+"PHM2022_Univar_PIN",
+"PHM2022_Univar_PO",
+"PHM2022_Univar_PDIN",
+"BEARING_Univar",
 #"PADERBORN_64KHZ_Univar",
 # "PADERBORN_4KHZ_Univar",
 # "PADERBORN_64KHZ_Multivar",
@@ -96,5 +95,6 @@ for dataset in datasets:
     print(f"Working on {Dataset_name} finished successfully!")
 
 
+print("STC algorithm finished!")
 
 

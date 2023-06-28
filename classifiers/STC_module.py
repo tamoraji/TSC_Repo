@@ -92,7 +92,10 @@ def STC(results_path, dataset_name, dataset, labels, nb_folds=5,
         # split the data into training and testing sets
         X_train, X_test = Dataset[train_idx], Dataset[test_idx]
         y_train, y_test = labels[train_idx], labels[test_idx]
+           
             
+        t_fold = time.time() ##Start timing
+
         # fit the algorithm on the training data
             
         classifier.fit(X_train, y_train)
@@ -127,7 +130,7 @@ def STC(results_path, dataset_name, dataset, labels, nb_folds=5,
             f.write(f'F1 Score: {f1}\n')
             f.write(f'Confusion Matrix:\n{confusion}\n\n')
             f.write(f'Classification report:\n{report}\n\n')
-            f.write("Total time elapsed: {:.4f}s".format(time.time() - t_total))
+            f.write("Total time elapsed: {:.4f}s".format(time.time() - t_fold))
 
         
     with open(f'{results_path}/dataset_{dataset_name}_STC.txt', 'w') as f:

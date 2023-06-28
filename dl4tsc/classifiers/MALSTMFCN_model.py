@@ -81,9 +81,10 @@ class Classifier_MALSTMFCN:
 
         ''' sabsample timesteps to prevent OOM due to Attention LSTM '''
         stride = 2
+        num_fil = max(1, (input_shape[-1] // stride))
 
         x = keras.layers.Permute((2, 1))(input_layer)
-        x = keras.layers.Conv1D(input_shape[-1] // stride, 8, strides=stride, padding='same', activation='relu', use_bias=False,
+        x = keras.layers.Conv1D(filters=num_fil, kernel_size=8, strides=stride, padding='same', activation='relu', use_bias=False,
                kernel_initializer='he_uniform')(x) # (None, variables / stride, timesteps)
         x = keras.layers.Permute((2, 1))(x)
 

@@ -15,15 +15,17 @@ def KNN(results_path, dataset_name, dataset, labels, nb_folds=5, dis='euclidean'
     print(f"\n The number of data samples (N) is:{dataset.shape[0]}")
     print(f"\n The number of TS length (T) is:{dataset.shape[1]}")
     print(f"\n The number of TS dimention (M) is:{dataset.shape[2]}")
-    if dataset.shape[2] > 1:
-        print("KNN is not capable of doing classification on MTS. so it will be done on only the first dimension")
+#     if dataset.shape[2] > 1:
+#         print("KNN is not capable of doing classification on MTS. so it will be done on only the first dimension")
     
-    dataset_1 = dataset[:,:,0]
-    labels = labels.reshape((-1,))
+    dataset_1 = np.swapaxes(dataset, 1,2)
+    print(dataset_1.shape)
+#     dataset_1 = dataset[:,:,0]
+    labels = labels.squeeze()
 
     ## Create Classification module
     from sktime.classification.distance_based import KNeighborsTimeSeriesClassifier
-    classifier = KNeighborsTimeSeriesClassifier(distance= dis, n_jobs=10)
+    classifier = KNeighborsTimeSeriesClassifier(distance= dis, n_jobs=20)
 
 
     kf = KFold(n_splits=nb_folds, shuffle=True)
@@ -36,6 +38,8 @@ def KNN(results_path, dataset_name, dataset, labels, nb_folds=5, dis='euclidean'
         X_train, X_test = dataset_1[train_idx], dataset_1[test_idx]
         y_train, y_test = labels[train_idx], labels[test_idx]
             
+        t_fold = time.time() ##Start timing
+
         # fit the algorithm on the training data
             
         classifier.fit(X_train, y_train)
@@ -61,7 +65,7 @@ def KNN(results_path, dataset_name, dataset, labels, nb_folds=5, dis='euclidean'
         report_list.append(report)
         print(report)
         
-        print(f" fold {fold+1} is Finished!")
+        print(f" fold {fold+1} of {dataset_name} is Finished!")
         
         # save the output to a text file
         with open(f'{results_path}/dataset_{dataset_name}_KNN_{dis}_fold_{fold+1}.txt', 'w') as f:
@@ -69,6 +73,8 @@ def KNN(results_path, dataset_name, dataset, labels, nb_folds=5, dis='euclidean'
             f.write(f'F1 Score: {f1}\n')
             f.write(f'Confusion Matrix:\n{confusion}\n\n')
             f.write(f'Classification report:\n{report}\n\n')
+            f.write("Total time elapsed: {:.4f}s".format(time.time() - t_fold))
+
         
     with open(f'{results_path}/dataset_{dataset_name}_KNN_{dis}.txt', 'w') as f:
         f.write("Mean accuracy: {:.4f} (std={:.4f})\n".format(np.mean(accuracy_scores), np.std(accuracy_scores)))

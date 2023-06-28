@@ -44,14 +44,13 @@ datasets = [
 # "CWRU_12k_FE_multivar",
 # "CWRU_48k_DE_univar",
 # "CWRU_48k_DE_multivar",
-"PHM2022_Multivar", #Starting to work on PHM2022_Multivar_Dataset at 2023-06-14 09:18:21  
-"PHM2022_Univar_PIN",
-"PHM2022_Univar_PO",
-"PHM2022_Univar_PDIN",
+# "PHM2022_Multivar", #Starting to work on PHM2022_Multivar_Dataset at 2023-06-14 09:18:21  
+# "PHM2022_Univar_PIN",
+# "PHM2022_Univar_PO",
+# "PHM2022_Univar_PDIN",
 "MFPT_48KHZ_Univar",
 "MFPT_96KHZ_Univar",
-
-# "BEARING_Univar",
+"BEARING_Univar",
 # "PADERBORN_4KHZ_Univar",
 # "PADERBORN_4KHZ_Multivar",
 # "PADERBORN_64KHZ_Multivar",

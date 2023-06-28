@@ -18,16 +18,16 @@ datasets = [
 # "CWRU_12k_DE_univar", #with c=1000 took 3 days to fit to this. so, changed c t0 c=100 from here and n_jobs=20
 # "CWRU_12k_DE_multivar", #Starting to work on CWRU_12k_DE_multivar_Dataset at 2023-06-08 10:49:50 No result after 48h
 # "CWRU_12k_FE_univar", #Starting to work on CWRU_12k_FE_univar_Dataset at 2023-06-10 11:34:37 no results after 48 hours
-# "MFPT_48KHZ_Univar", #Starting to work on MFPT_48KHZ_Univar_Dataset at 2023-06-12 15:57:33
+# "MFPT_48KHZ_Univar", #Starting to work on MFPT_48KHZ_Univar_Dataset at 2023-06-12 15:57:33 no results after 48 hours
 # "BEARING_Univar",#Killed due to memorry
-"CWRU_12k_FE_multivar",
-"CWRU_48k_DE_univar",
-"CWRU_48k_DE_multivar",
-# "PHM2022_Multivar",
-# "PHM2022_Univar_PIN",
-# "PHM2022_Univar_PO",
-# "PHM2022_Univar_PDIN",
-# "MFPT_96KHZ_Univar",
+# "CWRU_12k_FE_multivar",#Starting to work on CWRU_12k_FE_multivar_Dataset at 2023-06-18 10:36:27
+# "CWRU_48k_DE_univar",#memory
+# "CWRU_48k_DE_multivar",#Starting to work on CWRU_48k_DE_multivar_Dataset at 2023-06-22 14:48:23 -> memory
+"PHM2022_Univar_PIN",#Starting to work on PHM2022_Univar_PIN_Dataset at 2023-06-24 11:41:42
+"PHM2022_Multivar",
+"PHM2022_Univar_PO",
+"PHM2022_Univar_PDIN",
+"MFPT_96KHZ_Univar",
 # "PADERBORN_64KHZ_Univar",
 # "PADERBORN_4KHZ_Univar",
 # "PADERBORN_64KHZ_Multivar",
